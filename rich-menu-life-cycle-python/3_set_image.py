@@ -1,18 +1,16 @@
 import sys
 import os
-import linebot
-from linebot.v3.messaging import RichMenuRequest
-from linebot.v3.messaging.rest import ApiException
-from pprint import pprint
+from dotenv import load_dotenv
+from linebot.v3.messaging import Configuration, ApiClient, MessagingApiBlob
 
-outer_lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
-sys.path.append(outer_lib_path)
+load_dotenv(override=True, dotenv_path=".env")
 
 
-configuration = linebot.v3.messaging.Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
-api_client = linebot.v3.messaging.ApiClient(configuration) 
-api_instance = linebot.v3.messaging.MessagingApiBlob(api_client)
+configuration = Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
+api_client = ApiClient(configuration) 
+api_instance = MessagingApiBlob(api_client)
 
+load_dotenv(override=True, dotenv_path=".env")
 
 def upload_richmenu_image(rich_menu_id:str, rich_menu_image_file: str):
     """Upload LINE Rich menu images.
@@ -21,17 +19,18 @@ def upload_richmenu_image(rich_menu_id:str, rich_menu_image_file: str):
         rich_menu_image_file: Rich menu images file path
     """
 
-    with open(rich_menu_image_file, "r") as f:
-        rich_menu_image = f.read()
-
     try:
-        api_instance.set_rich_menu_image(rich_menu_id, body=rich_menu_image)
+        with open(rich_menu_image_file, "rb") as f:
+            api_instance.set_rich_menu_image(
+                rich_menu_id=rich_menu_id,
+                body=f
+            )
     except Exception as e:
         print("Exception when calling MessagingApiBlob->set_rich_menu_image: %s\n" % e)
         
 if __name__ == "__main__":
-    rich_menu_id="YOUR_RICH_MENU_ID"
+    rich_menu_id="richmenu-673913717d308be8e741786139158819"
     upload_richmenu_image(
         rich_menu_id=rich_menu_id,
-        rich_menu_image_file="../rich-menu/schema.json"
+        rich_menu_image_file="rich-menu/richmenu.jpg"
     )

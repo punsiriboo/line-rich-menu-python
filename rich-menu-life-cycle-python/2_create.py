@@ -1,17 +1,14 @@
-import sys
 import os
-import linebot
-from linebot.v3.messaging import RichMenuRequest
-from linebot.v3.messaging.rest import ApiException
 from pprint import pprint
+from dotenv import load_dotenv
+from linebot.v3.messaging import Configuration, ApiClient, MessagingApi, RichMenuRequest
+from linebot.v3.messaging.rest import ApiException
 
-outer_lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
-sys.path.append(outer_lib_path)
+load_dotenv(override=True, dotenv_path=".env")
 
-
-configuration = linebot.v3.messaging.Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
-api_client = linebot.v3.messaging.ApiClient(configuration) 
-api_instance = linebot.v3.messaging.MessagingApi(api_client)
+configuration = Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
+api_client = ApiClient(configuration) 
+api_instance = MessagingApi(api_client)
 
 
 def create_rich_menus(rich_menu_file: str):
@@ -40,4 +37,4 @@ def create_rich_menus(rich_menu_file: str):
             print(f"An unexpected error occurred processing {rich_menu_file}: {e}")
 
 if __name__ == "__main__":
-    create_rich_menus("../rich-menu/schema.json")
+    create_rich_menus("rich-menu/schema.json")
