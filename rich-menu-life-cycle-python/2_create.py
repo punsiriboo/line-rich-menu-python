@@ -34,7 +34,7 @@ def create_rich_menus(rich_menu_file: str):
     except ApiException as e:
         print(f"Error creating rich menu from {rich_menu_file}: {e}")
     except Exception as e:  # Catch other potential errors
-            print(f"An unexpected error occurred processing {rich_menu_file}: {e}")
+        print(f"An unexpected error occurred processing {rich_menu_file}: {e}")
 
 if __name__ == "__main__":
     create_rich_menus("rich-menu/schema.json")
