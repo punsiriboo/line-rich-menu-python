@@ -22,15 +22,14 @@ def upload_richmenu_image(rich_menu_id: str, rich_menu_image_file: str):
         api_instance = MessagingApiBlob(api_client)
         
         try:
-            with open(rich_menu_image_file, "rb") as f:
-                body = f.read()
-                api_instance.set_rich_menu_image(rich_menu_id=rich_menu_id, body=body)
+            # Pass file path directly with headers
+            api_instance.set_rich_menu_image(rich_menu_id, rich_menu_image_file, _headers={'Content-Type': 'image/jpeg'})
             print(f"Successfully uploaded rich menu image: {rich_menu_image_file}")
         except Exception as e:
             print("Exception when calling MessagingApiBlob->set_rich_menu_image: %s\n" % e)
         
 if __name__ == "__main__":
-    rich_menu_id="richmenu-679ab88bcc34d8a78d85c453d12183b4"
+    rich_menu_id="richmenu-595db7774db65aa1484bb2a8d44273f6"
     upload_richmenu_image(
         rich_menu_id=rich_menu_id,
         rich_menu_image_file="rich-menu/richmenu.jpg"
