@@ -18,5 +18,5 @@ if __name__ == "__main__":
     rich_menu_id="richmenu-595db7774db65aa1484bb2a8d44273f6"
     upload_richmenu_image(
         rich_menu_id=rich_menu_id,
-        rich_menu_image_file="../rich-menu/richmenu.jpg"
+        rich_menu_image_file="../assets/richmenu.jpg"
     )

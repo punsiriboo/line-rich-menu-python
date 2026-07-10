@@ -37,7 +37,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2. คัดลอกไฟล์ environment และใส่ค่าจริง:
+2. คัดลอกไฟล์ environment และใส่ค่า CHANNEL_ACCESS_TOKEN และ DESTINATION_USER_IDs:
 
 ```bash
 cp .env.example .env
