@@ -1,9 +1,10 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from linebot.v3.messaging import Configuration, ApiClient, MessagingApi
 from pprint import pprint
 
-load_dotenv(override=True, dotenv_path="../.env")
+load_dotenv(override=True, dotenv_path=Path(__file__).resolve().parent / ".env")
 configuration = Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
 api_client = ApiClient(configuration)
 messaging_api = MessagingApi(api_client)

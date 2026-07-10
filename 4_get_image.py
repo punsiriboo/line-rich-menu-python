@@ -1,10 +1,11 @@
 import os
 from linebot.v3.messaging import Configuration, ApiClient, MessagingApiBlob
+from pathlib import Path
 from dotenv import load_dotenv
 from PIL import Image
 from io import BytesIO
 
-load_dotenv(override=True, dotenv_path=".env")
+load_dotenv(override=True, dotenv_path=Path(__file__).resolve().parent / ".env")
 configuration = Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
 api_client = ApiClient(configuration)
 messaging_api_blob = MessagingApiBlob(api_client)

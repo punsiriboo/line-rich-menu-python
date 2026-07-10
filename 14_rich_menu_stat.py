@@ -3,9 +3,10 @@ from datetime import datetime, timedelta
 from pprint import pprint
 
 import requests
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv(override=True, dotenv_path="../.env")
+load_dotenv(override=True, dotenv_path=Path(__file__).resolve().parent / ".env")
 access_token = os.getenv("CHANNEL_ACCESS_TOKEN")
 base_url = "https://api.line.me/v2/bot/insight/richmenu"
 

@@ -1,9 +1,9 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from linebot.v3.messaging import Configuration, ApiClient, MessagingApi, RichMenuRequest
-from linebot.v3.messaging.rest import ApiException
 
-load_dotenv(override=True, dotenv_path="../.env")
+load_dotenv(override=True, dotenv_path=Path(__file__).resolve().parent / ".env")
 
 configuration = Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
 api_client = ApiClient(configuration) 
@@ -22,4 +22,4 @@ def create_rich_menus(rich_menu_file: str):
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    create_rich_menus("../rich-menu/schema.json")
+    create_rich_menus("./assets/schema.json")

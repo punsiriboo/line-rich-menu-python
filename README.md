@@ -8,40 +8,34 @@
 line-rich-menu-python/
 ├── .env.example
 ├── requirements.txt
-├── rich-menu/
+├── asset/
 │   ├── schema.json
 │   └── richmenu.jpg
-└── rich-menu-life-cycle-python/
-    ├── 1_validate_and_create.py
-    ├── 2_get_and_list.py
-    ├── 3_set_image.py
-    ├── 4_get_image.py
-    ├── 5_set_default.py
-    ├── 6_set_per_user.py
-    ├── 8_get_rich_menu_list.py
-    ├── 9_delete_rich_menu.py
-    ├── 10_get_user_rich_menu.py
-    ├── 11_link_multiple_users.py
-    ├── 12_rich_menu_alias.py
-    ├── 13_rich_menu_switching.py
-    └── 14_rich_menu_stat.py
+├── 1_validate_and_create.py
+├── 2_get_and_list.py
+├── 3_set_image.py
+├── 4_get_image.py
+├── 5_set_default.py
+├── 6_set_per_user.py
+├── 8_get_rich_menu_list.py
+├── 9_delete_rich_menu.py
+├── 10_get_user_rich_menu.py
+├── 11_link_multiple_users.py
+├── 12_rich_menu_alias.py
+├── 13_rich_menu_switching.py
+└── 14_rich_menu_stat.py
 ```
 
 ## การติดตั้ง
-
-1. สร้าง virtual environment และติดตั้ง dependencies:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-```
-
-2. คัดลอกไฟล์ environment และใส่ค่า CHANNEL_ACCESS_TOKEN และ DESTINATION_USER_IDs:
-
-```bash
 cp .env.example .env
 ```
+
+แก้ไข `.env`:
 
 ```env
 CHANNEL_ACCESS_TOKEN=your_channel_access_token_here
@@ -50,10 +44,10 @@ DESTINATION_USER_ID=your_user_id_here
 
 ## การใช้งาน
 
-รันสคริปต์จากโฟลเดอร์ `rich-menu-life-cycle-python`:
+รันจากโฟลเดอร์หลักของโปรเจค:
 
 ```bash
-cd rich-menu-life-cycle-python
+source .venv/bin/activate
 ```
 
 ### Basic lifecycle
@@ -89,30 +83,26 @@ cd rich-menu-life-cycle-python
 | 13 | `13_rich_menu_switching.py` | สร้าง rich menu แบบสลับแท็บ (tab switching) |
 | 14 | `14_rich_menu_stat.py` | ดูสถิติ rich menu (summary / daily) |
 
-### ตัวอย่าง flow การใช้งาน
+### ตัวอย่าง flow
 
 ```bash
-# 1. สร้าง rich menu
 python 1_validate_and_create.py
-
-# 2. อัปโหลดรูปภาพ (แก้ rich_menu_id ในสคริปต์ก่อนรัน)
 python 3_set_image.py
-
-# 3. ตั้งเป็น default หรือผูกกับ user
 python 5_set_default.py
 python 6_set_per_user.py
 ```
 
 ## ไฟล์ที่สำคัญ
 
-- `rich-menu/schema.json` — JSON schema ของ rich menu
-- `rich-menu/richmenu.jpg` — รูปภาพ rich menu (2500×1686 หรือ 2500×843 px)
+- `asset/schema.json` — JSON schema ของ rich menu
+- `asset/richmenu.jpg` — รูปภาพ rich menu (2500×1686 หรือ 2500×843 px)
 - `.env` — Channel Access Token และ User ID (ไม่ commit ขึ้น git)
 
 ## หมายเหตุ
 
 - ต้องมี Channel Access Token จาก [LINE Developers Console](https://developers.line.biz/)
 - รูปภาพ rich menu รองรับขนาด 2500×1686 หรือ 2500×843 pixels (JPEG/PNG)
+- แก้ `rich_menu_id` และ `user_id` ในสคริปต์ก่อนรัน
 - Rich menu switching ต้องใช้ per-user rich menu และ rich menu alias
 - สถิติ rich menu (`14_rich_menu_stat.py`) ใช้ได้เฉพาะ rich menu ที่สร้างผ่าน Messaging API
 
