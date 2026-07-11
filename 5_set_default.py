@@ -32,4 +32,6 @@ def cancel_default_rich_menu():
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    set_default_rich_menu("richmenu-595db7774db65aa1484bb2a8d44273f6")
+    set_default_rich_menu("richmenu-b02b0a41d2d34534bf397100d2c9fefd")
+    # get_default_rich_menu()
+    # cancel_default_rich_menu()

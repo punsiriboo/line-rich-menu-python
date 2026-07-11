@@ -20,5 +20,5 @@ def get_richmenu_image(rich_menu_id: str):
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    rich_menu_id="richmenu-595db7774db65aa1484bb2a8d44273f6"
+    rich_menu_id="richmenu-b02b0a41d2d34534bf397100d2c9fefd"
     get_richmenu_image(rich_menu_id=rich_menu_id)
