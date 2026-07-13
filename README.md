@@ -11,6 +11,7 @@ line-rich-menu-python/
 ├── .env.example
 ├── requirements.txt
 ├── assets/
+│   ├── title.png
 │   ├── schema.json
 │   └── richmenu.jpg
 ├── 1_validate_create_delete.py
@@ -49,19 +50,19 @@ source .venv/bin/activate
 
 | # | สคริปต์ | คำอธิบาย |
 |---|---------|----------|
-| 1 | `1_validate_create_delete.py` | ตรวจสอบ schema, สร้าง และลบ rich menu |
+| 1 | `1_validate_create_delete.py` | ตรวจสอบ schema, สร้าง/ลบ rich menu และสร้าง/ลบ alias |
 | 2 | `2_get_and_list.py` | ดึงรายการ rich menu และดึงข้อมูลตาม ID |
 | 3 | `3_set_get_image.py` | อัปโหลดและดาวน์โหลดรูปภาพ rich menu |
 | 4 | `4_set_default.py` | ตั้งค่า / ดึง / ยกเลิก default rich menu |
 | 5 | `5_set_per_user.py` | ผูก / ยกเลิก / ดึง rich menu ของ user |
 | 6 | `6_link_multiple_users.py` | ผูก / ยกเลิก rich menu กับหลาย users |
-| 7 | `7_rich_menu_alias.py` | จัดการ rich menu alias (ใช้กับ tab switching) |
+| 7 | `7_rich_menu_alias.py` | จัดการ rich menu alias แบบละเอียด (get / update / list) |
 | 8 | `8_rich_menu_stat.py` | ดูสถิติ rich menu (summary / daily) และแสดงกราฟด้วย Plotly |
 
 ### ตัวอย่าง flow
 
 ```bash
-# 1. สร้าง rich menu
+# 1. สร้าง rich menu + alias
 python 1_validate_create_delete.py
 
 # 2. อัปโหลดรูปภาพ (แก้ rich_menu_id ในสคริปต์ก่อนรัน)
@@ -93,6 +94,7 @@ python 8_rich_menu_stat.py
 - ต้องมี Channel Access Token จาก [LINE Developers Console](https://developers.line.biz/)
 - รูปภาพ rich menu รองรับขนาด 2500×1686 หรือ 2500×843 pixels (JPEG/PNG)
 - แก้ `rich_menu_id` และ `user_id` ในสคริปต์ก่อนรัน
+- `1_validate_create_delete.py` สร้าง alias อัตโนมัติหลังสร้าง rich menu (`my-alias`)
 - Rich menu alias (`7_rich_menu_alias.py`) ใช้ร่วมกับ `richmenuswitch` action สำหรับสลับแท็บ
 - สถิติ rich menu (`8_rich_menu_stat.py`) ใช้ Insight API ได้เฉพาะ rich menu ที่สร้างผ่าน Messaging API
 - ถ้า API คืนแค่ `richMenuId` โดยไม่มี `impression`/`clicks` มักเกิดจาก privacy threshold, ยังไม่มี usage หรือสถิติยังไม่พร้อม (มักพร้อมวันถัดไป)
