@@ -1,5 +1,7 @@
 # LINE Rich Menu Python
 
+![LINE Rich Menu Python](assets/title.png)
+
 โปรเจคตัวอย่างสำหรับจัดการ LINE Rich Menu ด้วย Python และ LINE Bot SDK v3
 
 ## โครงสร้างโปรเจค
