@@ -21,5 +21,13 @@ def create_rich_menus(rich_menu_file: str):
     except Exception as e:
         print(f"Error: {e}")
 
+def delete_rich_menu(rich_menu_id: str):
+    try:
+        messaging_api.delete_rich_menu(rich_menu_id)
+        print(f"Deleted rich menu: {rich_menu_id}")
+    except Exception as e:
+        print(f"Error: {e}")
+
 if __name__ == "__main__":
     create_rich_menus("./assets/schema.json")
+    #delete_rich_menu("richmenu-178877fa76f33106e2391ffd2878c5a5")

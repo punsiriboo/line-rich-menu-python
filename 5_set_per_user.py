@@ -21,8 +21,17 @@ def unlink_rich_menu_from_user(user_id: str):
         print(f"Unlinked rich menu from user {user_id}")
     except Exception as e:
         print(f"Error: {e}")
+    
+def get_user_rich_menu(user_id: str):
+    try:
+        response = messaging_api.get_rich_menu_id_of_user(user_id)
+        print(f"User {user_id} rich menu ID: {response.rich_menu_id}")
+        return response.rich_menu_id
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
 
 if __name__ == "__main__":
     user_id = "YOUR_USER_ID_HERE"
-    rich_menu_id = "richmenu-595db7774db65aa1484bb2a8d44273f6"
+    rich_menu_id = "richmenu-b02b0a41d2d34534bf397100d2c9fefd"
     link_rich_menu_to_user(user_id, rich_menu_id)
