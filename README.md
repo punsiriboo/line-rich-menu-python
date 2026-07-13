@@ -54,15 +54,22 @@ source .venv/bin/activate
 | 5 | `5_set_per_user.py` | ผูก / ยกเลิก / ดึง rich menu ของ user |
 | 6 | `6_link_multiple_users.py` | ผูก / ยกเลิก rich menu กับหลาย users |
 | 7 | `7_rich_menu_alias.py` | จัดการ rich menu alias (ใช้กับ tab switching) |
-| 8 | `8_rich_menu_stat.py` | ดูสถิติ rich menu (summary / daily) |
+| 8 | `8_rich_menu_stat.py` | ดูสถิติ rich menu (summary / daily) และแสดงกราฟด้วย Plotly |
 
 ### ตัวอย่าง flow
 
 ```bash
+# 1. สร้าง rich menu
 python 1_validate_create_delete.py
+
+# 2. อัปโหลดรูปภาพ (แก้ rich_menu_id ในสคริปต์ก่อนรัน)
 python 3_set_get_image.py
+
+# 3. ตั้งเป็น default หรือผูกกับ user
 python 4_set_default.py
 python 5_set_per_user.py
+
+# 4. ดูสถิติ (แก้ rich_menu_id และช่วงวันที่ก่อนรัน)
 python 8_rich_menu_stat.py
 ```
 
@@ -71,6 +78,7 @@ python 8_rich_menu_stat.py
 - `python-dotenv` — โหลด environment variables
 - `line-bot-sdk>=3.24.0` — LINE Bot SDK v3 (ต้องใช้ 3.24.0+ สำหรับ rich menu insight)
 - `Pillow` — แสดงรูปภาพใน `3_set_get_image.py`
+- `plotly` / `pandas` — แสดงกราฟ interactive ใน `8_rich_menu_stat.py`
 
 ## ไฟล์ที่สำคัญ
 
@@ -85,6 +93,7 @@ python 8_rich_menu_stat.py
 - แก้ `rich_menu_id` และ `user_id` ในสคริปต์ก่อนรัน
 - Rich menu alias (`7_rich_menu_alias.py`) ใช้ร่วมกับ `richmenuswitch` action สำหรับสลับแท็บ
 - สถิติ rich menu (`8_rich_menu_stat.py`) ใช้ Insight API ได้เฉพาะ rich menu ที่สร้างผ่าน Messaging API
+- ถ้า API คืนแค่ `richMenuId` โดยไม่มี `impression`/`clicks` มักเกิดจาก privacy threshold, ยังไม่มี usage หรือสถิติยังไม่พร้อม (มักพร้อมวันถัดไป)
 
 ## อ้างอิง
 

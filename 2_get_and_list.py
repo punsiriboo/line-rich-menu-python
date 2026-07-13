@@ -31,5 +31,4 @@ def get_rich_menu(rich_menu_id: str):
 
 if __name__ == "__main__":
     get_rich_menu_list()
-    print("--------------------------------")
-    get_rich_menu("richmenu-b02b0a41d2d34534bf397100d2c9fefd")
+    # get_rich_menu("richmenu-b02b0a41d2d34534bf397100d2c9fefd")
