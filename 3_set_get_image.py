@@ -10,31 +10,36 @@ configuration = Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
 api_client = ApiClient(configuration)
 messaging_api_blob = MessagingApiBlob(api_client)
 
+
 def upload_richmenu_image(rich_menu_id: str, image_path: str):
     try:
+        with open(image_path, "rb") as f:
+            image_bytes = f.read()
         messaging_api_blob.set_rich_menu_image(
-            rich_menu_id, 
-            image_path,
-            _headers={'Content-Type': 'image/jpeg'}
+            rich_menu_id,
+            body=image_bytes,
+            _headers={"Content-Type": "image/jpeg"},
         )
         print(f"Uploaded: {image_path}")
     except Exception as e:
         print(f"Error: {e}")
 
-def get_richmenu_image(rich_menu_id: str):
+
+def get_richmenu_image(rich_menu_id: str, show: bool = False):
     try:
         image_data = messaging_api_blob.get_rich_menu_image(rich_menu_id)
         img = Image.open(BytesIO(image_data))
         print(f"Downloaded: {len(image_data)} bytes, Size: {img.size}, Mode: {img.mode}")
-        img.show()
+        if show:
+            img.show()
     except Exception as e:
         print(f"Error: {e}")
 
+
 if __name__ == "__main__":
-    rich_menu_id="richmenu-b02b0a41d2d34534bf397100d2c9fefd"
+    rich_menu_id = "richmenu-ccdb12652964190503e5933af502dac5"
     upload_richmenu_image(
         rich_menu_id=rich_menu_id,
-        image_path="./assets/richmenu.jpg"
+        image_path="./assets/richmenu.jpg",
     )
     get_richmenu_image(rich_menu_id=rich_menu_id)
-

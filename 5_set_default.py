@@ -8,6 +8,7 @@ configuration = Configuration(access_token=os.getenv("CHANNEL_ACCESS_TOKEN"))
 api_client = ApiClient(configuration)
 messaging_api = MessagingApi(api_client)
 
+
 def set_default_rich_menu(rich_menu_id: str):
     try:
         messaging_api.set_default_rich_menu(rich_menu_id)
@@ -15,14 +16,16 @@ def set_default_rich_menu(rich_menu_id: str):
     except Exception as e:
         print(f"Error: {e}")
 
+
 def get_default_rich_menu():
     try:
-        response = messaging_api.get_default_rich_menu()
+        response = messaging_api.get_default_rich_menu_id()
         print(f"Default rich menu ID: {response.rich_menu_id}")
         return response.rich_menu_id
     except Exception as e:
         print(f"Error: {e}")
         return None
+
 
 def cancel_default_rich_menu():
     try:
@@ -31,7 +34,8 @@ def cancel_default_rich_menu():
     except Exception as e:
         print(f"Error: {e}")
 
+
 if __name__ == "__main__":
-    set_default_rich_menu("richmenu-b02b0a41d2d34534bf397100d2c9fefd")
-    # get_default_rich_menu()
+    set_default_rich_menu("richmenu-ccdb12652964190503e5933af502dac5")
+    get_default_rich_menu()
     # cancel_default_rich_menu()

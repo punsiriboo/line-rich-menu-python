@@ -17,11 +17,12 @@ line-rich-menu-python/
 ├── 1_validate_create_delete.py
 ├── 2_get_and_list.py
 ├── 3_set_get_image.py
-├── 4_set_default.py
-├── 5_set_per_user.py
-├── 6_link_multiple_users.py
-├── 7_rich_menu_alias.py
-└── 8_rich_menu_stat.py
+├── 4_create_rich_menu_alias.py
+├── 5_set_default.py
+├── 6_set_per_user.py
+├── 7_link_multiple_users.py
+├── 8_rich_menu_alias.py
+└── 9_rich_menu_stat.py
 ```
 
 ## การติดตั้ง
@@ -50,30 +51,34 @@ source .venv/bin/activate
 
 | # | สคริปต์ | คำอธิบาย |
 |---|---------|----------|
-| 1 | `1_validate_create_delete.py` | ตรวจสอบ schema, สร้าง/ลบ rich menu และสร้าง/ลบ alias |
+| 1 | `1_validate_create_delete.py` | ตรวจสอบ schema, สร้าง/ลบ rich menu |
 | 2 | `2_get_and_list.py` | ดึงรายการ rich menu และดึงข้อมูลตาม ID |
 | 3 | `3_set_get_image.py` | อัปโหลดและดาวน์โหลดรูปภาพ rich menu |
-| 4 | `4_set_default.py` | ตั้งค่า / ดึง / ยกเลิก default rich menu |
-| 5 | `5_set_per_user.py` | ผูก / ยกเลิก / ดึง rich menu ของ user |
-| 6 | `6_link_multiple_users.py` | ผูก / ยกเลิก rich menu กับหลาย users |
-| 7 | `7_rich_menu_alias.py` | จัดการ rich menu alias แบบละเอียด (get / update / list) |
-| 8 | `8_rich_menu_stat.py` | ดูสถิติ rich menu (summary / daily) และแสดงกราฟด้วย Plotly |
+| 4 | `4_create_rich_menu_alias.py` | สร้าง/ลบ rich menu alias (ต้องอัปโหลดรูปก่อน) |
+| 5 | `5_set_default.py` | ตั้งค่า / ดึง / ยกเลิก default rich menu |
+| 6 | `6_set_per_user.py` | ผูก / ยกเลิก / ดึง rich menu ของ user |
+| 7 | `7_link_multiple_users.py` | ผูก / ยกเลิก rich menu กับหลาย users |
+| 8 | `8_rich_menu_alias.py` | จัดการ rich menu alias แบบละเอียด (get / update / list) |
+| 9 | `9_rich_menu_stat.py` | ดูสถิติ rich menu (summary / daily) และแสดงกราฟด้วย Plotly |
 
 ### ตัวอย่าง flow
 
 ```bash
-# 1. สร้าง rich menu + alias
+# 1. สร้าง rich menu
 python 1_validate_create_delete.py
 
 # 2. อัปโหลดรูปภาพ (แก้ rich_menu_id ในสคริปต์ก่อนรัน)
 python 3_set_get_image.py
 
-# 3. ตั้งเป็น default หรือผูกกับ user
-python 4_set_default.py
-python 5_set_per_user.py
+# 3. สร้าง alias (แก้ rich_menu_id ในสคริปต์ก่อนรัน)
+python 4_create_rich_menu_alias.py
 
-# 4. ดูสถิติ (แก้ rich_menu_id และช่วงวันที่ก่อนรัน)
-python 8_rich_menu_stat.py
+# 4. ตั้งเป็น default หรือผูกกับ user
+python 5_set_default.py
+python 6_set_per_user.py
+
+# 5. ดูสถิติ (แก้ rich_menu_id และช่วงวันที่ก่อนรัน)
+python 9_rich_menu_stat.py
 ```
 
 ## Dependencies
@@ -81,7 +86,7 @@ python 8_rich_menu_stat.py
 - `python-dotenv` — โหลด environment variables
 - `line-bot-sdk>=3.24.0` — LINE Bot SDK v3 (ต้องใช้ 3.24.0+ สำหรับ rich menu insight)
 - `Pillow` — แสดงรูปภาพใน `3_set_get_image.py`
-- `plotly` / `pandas` — แสดงกราฟ interactive ใน `8_rich_menu_stat.py`
+- `plotly` / `pandas` — แสดงกราฟ interactive ใน `9_rich_menu_stat.py`
 
 ## ไฟล์ที่สำคัญ
 
@@ -94,9 +99,9 @@ python 8_rich_menu_stat.py
 - ต้องมี Channel Access Token จาก [LINE Developers Console](https://developers.line.biz/)
 - รูปภาพ rich menu รองรับขนาด 2500×1686 หรือ 2500×843 pixels (JPEG/PNG)
 - แก้ `rich_menu_id` และ `user_id` ในสคริปต์ก่อนรัน
-- `1_validate_create_delete.py` สร้าง alias อัตโนมัติหลังสร้าง rich menu (`my-alias`)
-- Rich menu alias (`7_rich_menu_alias.py`) ใช้ร่วมกับ `richmenuswitch` action สำหรับสลับแท็บ
-- สถิติ rich menu (`8_rich_menu_stat.py`) ใช้ Insight API ได้เฉพาะ rich menu ที่สร้างผ่าน Messaging API
+- ต้องอัปโหลดรูป (`3_set_get_image.py`) ก่อนสร้าง alias (`4_create_rich_menu_alias.py`)
+- Rich menu alias (`8_rich_menu_alias.py`) ใช้ร่วมกับ `richmenuswitch` action สำหรับสลับแท็บ
+- สถิติ rich menu (`9_rich_menu_stat.py`) ใช้ Insight API ได้เฉพาะ rich menu ที่สร้างผ่าน Messaging API
 - ถ้า API คืนแค่ `richMenuId` โดยไม่มี `impression`/`clicks` มักเกิดจาก privacy threshold, ยังไม่มี usage หรือสถิติยังไม่พร้อม (มักพร้อมวันถัดไป)
 
 ## อ้างอิง

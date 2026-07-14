@@ -98,8 +98,9 @@ def plot_daily(response):
 
 if __name__ == "__main__":
     rich_menu_id = "richmenu-1d2e62eb1e49dc5e98de2a3a72ae4369"
-    from_date, to_date = "20260701", "20260715"
+    from_date, to_date = "20260701", "20260713"
     summary = get_rich_menu_summary(rich_menu_id, from_date, to_date)
     daily = get_rich_menu_daily(rich_menu_id, from_date, to_date)
     plot_summary(summary)
     plot_daily(daily)
+
