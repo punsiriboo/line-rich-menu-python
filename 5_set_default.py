@@ -16,7 +16,6 @@ def set_default_rich_menu(rich_menu_id: str):
     except Exception as e:
         print(f"Error: {e}")
 
-
 def get_default_rich_menu():
     try:
         response = messaging_api.get_default_rich_menu_id()
@@ -25,7 +24,6 @@ def get_default_rich_menu():
     except Exception as e:
         print(f"Error: {e}")
         return None
-
 
 def cancel_default_rich_menu():
     try:
